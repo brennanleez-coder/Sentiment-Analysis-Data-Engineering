@@ -1,1 +1,17 @@
 # Sentiment-Analysis-Data-Engineering
+
+
+BigQuery data warehouse that will host data about Singapore’s stock market. Utilising Airflow to organise workflows in our ETL pipeline. With the data warehouse, the aim is to provide retail investors with a consolidated platform to analyse stock prices to make more well informed and robust investment decisions. Additionally, the data involved will also be simplified yet informative so that even amateur investors can comprehend them.
+
+Google BigQuery
+Google BigQuery will be the data warehouse for this project. Bigquery is a cloud-based enterprise data warehouse that offers rapid SQL queries and interactive analysis of massive datasets. It is also serverless with high scalability due to its deployment cycle. Its nomenclature is the shared-nothing architecture (SN) in which data is stored in replicated, distributed units and processed in compute clusters made up of nodes. Furthermore, all table modifications in Bigquery and load jobs are ACID compliant.
+
+Rationale for choosing ACID Model
+CAP theorem states that it is impossible to achieve both consistency and availability in a partition tolerant distributed system, so the ACID model instead of the BASE model because an ACID-compliant data warehouse helps to ensure that our data is consistent, predictable and reliable. Additionally,this is a simple data warehouse for retail investors. These retail investors could be only investing in their free time, and hence, the data needs to be consistently available. The eventual consistent characteristic of BASE is hence not robust enough. Even though eventual consistency does not mean that it never achieves it until it does, data reads are still possible, but they might not be accurate.
+
+Rationale for choosing BigQuery
+I have chosen a cloud-based data warehouse instead of database engines such as PostgreSQL because of its higher performance. Furthermore, for PostgreSQL, fixed resources are being allocated to the database server, so server engineers must manage and allocate resources manually, unlike cloud warehouses which are 100% elastic. Cloud data warehouses are also more cost-efficient with no operational overhead and are usually on a pay per use basis. Cloud-based data warehouses are also distributed automatically. This means that the data warehouse will become more fault-tolerant as there is no single point of failure, and the data is automatically replicated.
+
+In terms of cloud-based data warehouses, alternatives such as Snowflake and Amazon Redshift but ultimately selected BigQuery because of its ease of setting up and high query performance on large volumes of data compared to Redshift, which often requires configuration and tuning to perform well. In addition, BigQuery is the optimal choice in terms of scalability because it automatically provisions additional compute resources as needed, unlike Redshift, which requires more engineering effort to be spent on configuring it since compute, and storage is coupled.
+
+Although Snowflake and BigQuery tend to be similar in terms of scalability, performance, security and pricing, we decided to adopt Bigquery because it is more suited for data mining which is applicable for us since we are interested in mining insights about stock trends. In addition, since we have a spiky workload, where retail investors will occasionally run queries when they are interested in the stock prices, there is high idle time, resulting in Bigquery being cheaper than Snowflake.
